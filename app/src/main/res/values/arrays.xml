@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- These are the options displayed in the gender drop-down Spinner -->
+    <string-array name="array_gender_options">
+        <item>@string/gender_unknown</item>
+        <item>@string/gender_male</item>
+        <item>@string/gender_female</item>
+    </string-array>
+    <string-array name="array_set_options">
+        <item>SET-1</item>
+        <item>SET-2</item>
+        <item>SET-3</item>
+    </string-array>
+</resources>
