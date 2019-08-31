@@ -22,6 +22,8 @@ import androidx.core.app.NavUtils;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import static java.lang.Integer.parseInt;
+
 public class EditorActivity extends AppCompatActivity {
     private EditText mNameEdit;
     private EditText mRollEdit;
@@ -32,9 +34,11 @@ public class EditorActivity extends AppCompatActivity {
     public final static int GENDER_MALE=1;
     public final static int GENDER_FEMALE=2;
     private int mGender = GENDER_UNKNOWN;
+
+
     private FirebaseDatabase mFirebaseDtabase;
     private DatabaseReference mStudentDatabaseReference;
-    private int mSet = 7;
+    //private int mSet = 7;
     private boolean mStudentChanged = false;
     private StudentAdapter mStudentAdapter;
 
@@ -52,9 +56,9 @@ public class EditorActivity extends AppCompatActivity {
         mBatchEdit = (EditText) findViewById(R.id.edit_batch);
 
         mGenderSpinner = (Spinner) findViewById(R.id.spinner_gender);
-        mSetSpinner= (Spinner) findViewById(R.id.spinner_set);
+       // mSetSpinner= (Spinner) findViewById(R.id.spinner_set);
         setupSpinner();
-        mSetSpinner.setOnTouchListener(mTouchListener);
+       // mSetSpinner.setOnTouchListener(mTouchListener);
         if(extras==null){
             setTitle("Add a member");
             invalidateOptionsMenu();
@@ -63,15 +67,15 @@ public class EditorActivity extends AppCompatActivity {
             setTitle("Edit Member");
             mNameEdit.setText(extras.getString("name"));
             mRollEdit.setText(extras.getString("roll"));
-            String sSet =extras.getString("set");
-            int set;
-            if(sSet.compareTo("SET-1")==0)
-                set=0;
-            else if(sSet.compareTo("SET-2")==0)
-                set=1;
-            else
-                set=2;
-            mSetSpinner.setSelection(set);
+           // String sSet =extras.getString("set");
+           // int set;
+            //if(sSet.compareTo("SET-1")==0)
+            //    set=0;
+//            else if(sSet.compareTo("SET-2")==0)
+//                set=1;
+//            else
+//                set=2;
+//            mSetSpinner.setSelection(set);
         }
         mFirebaseDtabase=FirebaseDatabase.getInstance();
 
@@ -94,21 +98,16 @@ public class EditorActivity extends AppCompatActivity {
     {
         String studentName=mNameEdit.getText().toString();
         String studentRollno=mRollEdit.getText().toString();
+        int batch = parseInt(mBatchEdit.getText().toString());
+        int gender=mGender;
 
-        String set;
-        if(mSet==7)
-            set="SET-1";
-        else if(mSet==8)
-            set="SET-2";
-        else
-            set="SET-3";
 
-        if(!TextUtils.isEmpty(studentName) && !TextUtils.isEmpty(studentRollno) && !TextUtils.isEmpty(set))
+        if(!TextUtils.isEmpty(studentName) && !TextUtils.isEmpty(studentRollno))
         {
-            DatabaseReference localRef = mStudentDatabaseReference.getRef().child(set);
+            //DatabaseReference localRef = mStudentDatabaseReference.getRef().child(set);
 
-            Student student=new Student(studentName,studentRollno,mSet);
-            localRef.push().setValue(student);
+            Student student=new Student(studentName,studentRollno,gender,batch);
+            mStudentDatabaseReference.push().setValue(student);
 
 
         }
@@ -156,37 +155,37 @@ public class EditorActivity extends AppCompatActivity {
                 mGender = GENDER_UNKNOWN;
             }
         });
-        ArrayAdapter setSpinnerAdapter = ArrayAdapter.createFromResource(this,
-                R.array.array_set_options, android.R.layout.simple_spinner_item);
-
-        // Specify dropdown layout style - simple list view with 1 item per line
-        setSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-
-        // Apply the adapter to the spinner
-        mSetSpinner.setAdapter(setSpinnerAdapter);
-
-        // Set the integer mSelected to the constant values
-        mSetSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selection = (String) parent.getItemAtPosition(position);
-                if (!TextUtils.isEmpty(selection)) {
-                    if (selection.equals("SET-1")) {
-                        mSet = 7;
-                    } else if (selection.equals("SET-2")) {
-                        mSet = 8;
-                    } else {
-                        mSet = 9;
-                    }
-                }
-            }
-
-            // Because AdapterView is an abstract class, onNothingSelected must be defined
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                mSet = 7;
-            }
-        });
+//        ArrayAdapter setSpinnerAdapter = ArrayAdapter.createFromResource(this,
+//                R.array.array_set_options, android.R.layout.simple_spinner_item);
+//
+//        // Specify dropdown layout style - simple list view with 1 item per line
+//        setSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+//
+//        // Apply the adapter to the spinner
+//        mSetSpinner.setAdapter(setSpinnerAdapter);
+//
+//        // Set the integer mSelected to the constant values
+//        mSetSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                String selection = (String) parent.getItemAtPosition(position);
+//                if (!TextUtils.isEmpty(selection)) {
+//                    if (selection.equals("SET-1")) {
+//                        mSet = 7;
+//                    } else if (selection.equals("SET-2")) {
+//                        mSet = 8;
+//                    } else {
+//                        mSet = 9;
+//                    }
+//                }
+//            }
+//
+//            // Because AdapterView is an abstract class, onNothingSelected must be defined
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//                mSet = 7;
+//            }
+//        });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

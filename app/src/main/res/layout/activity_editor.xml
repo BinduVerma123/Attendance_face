@@ -83,33 +83,7 @@
                 android:spinnerMode="dropdown"/>
         </LinearLayout>
     </LinearLayout>
-    <LinearLayout
-        android:id="@+id/container_set"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
-        <!-- Label -->
-        <TextView
-            android:text="Set"
-            style="@style/CategoryStyle" />
-
-        <!-- Input field -->
-        <LinearLayout
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:orientation="vertical">
-
-            <!-- Gender drop-down spinner -->
-            <Spinner
-                android:id="@+id/spinner_set"
-                android:layout_height="48dp"
-                android:layout_width="wrap_content"
-                android:paddingRight="16dp"
-                android:spinnerMode="dropdown"/>
-        </LinearLayout>
-    </LinearLayout>
 
     <!-- Measurement category -->
     <LinearLayout
