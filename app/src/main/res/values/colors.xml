@@ -33,7 +33,7 @@
     <color name="magnitude9">#D93218</color>
 
     <!-- Magnitude circle color for an earthquake with magnitude over 10 -->
-    <color name="magnitude10plus">#C03823</color>
+    <color name="magnitude10plus">#8B008B</color>
 
     <!-- Text color for the details of the earthquake in the list item -->
     <color name="textColorEarthquakeDetails">#B4BAC0</color>

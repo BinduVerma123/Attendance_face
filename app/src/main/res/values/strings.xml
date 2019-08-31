@@ -30,5 +30,5 @@
 
     <!-- Dialog button text for the option to keep editing the current pet [CHAR LIMIT=20] -->
     <string name="keep_editing">Keep Editing</string>
-
+    <string name="sign_out">Sign Out</string>
 </resources>
