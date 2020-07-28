@@ -8,7 +8,7 @@ face-recognition. Backend python script matches the face features with the datas
 is updated and pushed to the realtime database.
 
 __Link to the python script:__ 
-(https://github.com/sbasu7241/Smart-Attendance-System)
+https://github.com/sbasu7241/Smart-Attendance-System
 
 #### Authors:
 - [Shreyansh Sahu](https://github.com/23nobody)
